@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  h1{
+        font-family:'Times New Roman', Times, serif;
+        font-size: 35px;
+       }
+  h1 ins{
+    font-style:italic;
+    font-weight:300;
+    text-decoration-line: none;
+  }
+  section.title{
+      padding:0px 20px;
+      line-height: 0.3;
+      border : 1px solid orange;
+  }
+  section{
+      margin-bottom:30px;     
+  }
+
+
+  .menu1:hover{
+      background-color: pink;
+  }
+  .menu2:hover{
+      background-color: pink;
+  }
+  .lo1 li:hover{
+    background-color: pink;
+  }
+  .left_box{
+    border:1px solid orange;
+    
+  }
+  .right_box{
+    border:1px solid orange;
+  }
+  .lo1{
+      display :block;
+      padding: 0px 4px 0px 20px;
+  }  
+    .left_box{
+         width: 40%;
+         margin-right:40px;
+         height:auto;
+
+      }
+
+    .right_box{
+        width: 100%;
+        height:600px;
+        height:auto;
+        
+    }
+  
+  .center_box{ 
+        border: 1px solid orange;
+        display : flex;
+        align-items: flex-start;
+        justify-content: space-between;
+       
+    }
+    .info{ 
+      display: none;
+    }
+    .info2{
+      display:none;
+    }
+    .info3{
+      display:none;
+    }
+    .info4{
+      display:none;
+    }
+    .info .pp1{
+      font-size:20px;
+    }
+    .info p{
+      padding:0px 10px 0px 10px;
+      font-size:17px;
+    }
+    .info2 p{
+      padding:0px 10px 0px 10px;
+      font-size:17px;
+    }
+    .info3 li{
+      margin-bottom: 10px;
+      font-size:17px;
+    }
+
+  img[class = i1]{
+    height:500px;
+    width:700px;
+    
+    
+  }
+  img[class = i2]{
+    height:200px;
+    width:360px;
+    padding:10px 0px 0px 20px; 
+    border: 1px solid black;
+    
+  }
+  .i3 {
+    border:1px solid black;
+  }
+  .im1{
+    display:flex;
+    justify-content: space-evenly;
+    
+  }
+
+</style>
+</head>
+<section class="title" class="b">
+  <h1><ins>CS424</ins> WORK PAGE</h1>
+  <p>KHANG MACH</p>
+  <p>CLASS: SPRING 2021</p>
+</section>
+  <div class="center_box">
+  <div class="left_box">
+     
+    <div > 
+        <li class= "menu1"> Description of Project1</li>
+        <div class="lo1" id="lo1d">
+            <li onclick = "t1()">How project task work</li>
+            <li onclick = "t2()">How processing data</li>
+            <li onclick = "t3()">Interesting fact from visualization</li>
+            <li onclick = "t4()">Video</li>
+        </div>
+    </div >
+    <div >
+        <li class ="menu2"> Link to Project1</li> 
+         <div class= "lo1" id="lo2d"> 
+         <li><a href="https://github.com/stevenmach123/cs424/tree/main/Documents/SP2021/CS424/project1_cs424"> To Github </a> </li>
+         <li><a href="https://kmach6cs424.shinyapps.io/work1_KM/"> To shiny visualization</a></li>
+       </div> 
+   </div>   
+    
+  </div>
+   <div class="right_box" >
+     <div class="info">
+      <p>The project  focus on 3 tasks of using visualization on  evaluate 9 energy sources and MegaWat for each 52 state or entire US from 1990 to 2019</p> 
+      <p class="pp1">First task:<p>
+      <p>First task, we want a general visualization on amount/ percent  each  source change of entire US across 1990- 2019 by display on line chart, or proportion each energy relative to other of a specific year displayed on multiple stacks bar  or  Raw table display to specify what amount/ percent(relative to other energy of single year) of 9 sources at once across year.  
+      </p>
+      <p> On my display task 1.1 tab give focus on percent and amount stack chart. Task 1.2 tab give display of amount and percent for line charts and raw table; We can select new one of 9 sources for line chart on side bar item “Resource” and  select “mode for Raw Table” to change display of raw table to be display amount or percent for 9 sources across years </p>
+      <p class="pp1">Second task:</p>
+      <div class = "im1"><img  src ="image/pc5.png" class="i1"></div> 
+      <div class = "im1"><img  src ="image/pc1.png" class="i1"></div>
+       <p>Comparing how 9 sources MegaWatt varies with respect to different states and years. So select task 2 tab on dashboard you will see 2 bar chart  each display 9 sources for its own state and year selected by either on “select State (Bar1) Task2” or “select Year (Bar1) Task2” for 1st chart, similar with select State and Year (Bar2) Task 2 for 2nd chart. By the default I let 2 chart display All on “Resource Bar1” and “Resource bar2”, so select different years to compare for a state on 2 chart or select different  states to compare for a year on 2 chart will give  dynamic change for 9 source bars for  that state in specific year. </p>
+       
+       <p> Select “Resource Bar” to be one of 9 source will give a single bar. We might found that is not helpful as if we select All to see at once for all sources to compare across.That is why we have Scale Option on top left to allow you switch between Overall Scale(based on  max of specific source on any state in any year you could possibly found)  and Base Scale</p>
+       <div class = "im1"><img  src ="image/pc2.png" class="i1"></div>
+       <p>Base Scale  activate only one of 2 chart with “Resource Bar” select input is 1 of 9 source(!=All). This mode 
+        Allow to compress new max limit  of y axis for both bar, which could be either found on 1st chart or 2nd chart. This mean if 1st chart(during display 1 of 9 sources) is higher than 2nd chart, then its bar got maximum high with new max limit, and 2nd chart bars height(no matter in Resource bar input is All or 1 of 9) will stretch up to proportional to new assigned limit of 1st chart. </p>
+        <div class = "im1"><img  src ="image/pc3.png" class="i1"></div>
+        <div class = "im1"><img src ="image/pc4.png"class="i1"></div>
+        <p>Or one example if 2nd chart( displaying All sources) found a higher source, then that new max limit assigned for 2 chart, this make a highest source bar got max height and bar adjacents( same chart) to stretch up proportional to new max limit, and 1st chart(must be single bar) to stretch up to new assigned limit as well. Scale limit is still worked if both chart with Resource Bar input is 1 of 9 sources. </p>
+        <p>However, despite you select Scale Option with Overall or Base  if 2 chart select input of Resource Bar is both All, then the Scale mode is still Overall, until you change 1 chart Resource Bar input is 1 of 9 source. </p>
+        <p class ="pp1">Third task</class>
+          <p>Task 3 tab, we will generate us map displaying 52 states. The top map,  states got darken or lightening depend on how a lot or little MegaWat generated for particular source in particular year. And below map focus on proportion of  that source to total source in a specific state. Meaning a state have some source are used more/less in particular year. So, you can use “select Year Task3” to change years and “select Source Task3” to change one of 9 sources(also include US Total)   
+ 
+          </p>
+      
+     </div>
+    
+      <div class= "info2">
+          <p>The original data from https://www.eia.gov/electricity/data/state/ ,the data is made as csv annual_generate_state.csv (which you can access my GitHub for see it). The data has column name is STATE,YEAR,TYPE OF PRODUCER,ENERGY SOURCE, MEGAWATT.</p>
+          <div class="im1">
+            <img src=image/pic2.2.png class="i2" > 
+            <img src=image/pic2.1.png style="width:380px;height:110px" class="i3" > 
+           </div>
+           <p>First, I rename column names to be convient ,like state, year, type, source, Wat. Second, the dataset got miss identifier which I have to remove before generate visualization. To know what state is missing and how values of that showed differently than rest of other row,  I need sort dataframe in either descend/ascent order by state to reach the outliner easily. I realized it got a blank space. So, when I generate subset ulitiliti, I have stating that, state != " " & Wat > -1 & source != “Other” & source !=“Other Gases” &  source != "Other Biomass" & source != "Pumped Storage". This ultiliti only permit  9 common source and  handle Wat is positive.</p>
+           <div class="im1">
+             <img src=image/pic2.3.png  style="width:380px;height:110px" class="i3" > 
+             <img src=image/pic2.4.png  style="width:380px;height:110px" class="i3" > 
+          </div> 
+          <p>Third, some source got long name like "Hydroelectric Conventional", "Solar Thermal and Photovoltaic", "Natural Gas",… need to have simple word name.  Fourth, when do unique(ultiliti), I realize one US-Total(not upper case) and US-TOTAL(upper case), so I need do upper case in situation  we need US-TOTAL entire data. And finally, I need convert number of Wat column to be integer, because integer/numeric  allow ggplot or geom_bar to filtering by statistic/count. I do this by gsub(",","",ultiliti$Wat) to remove comma, then do as.numeric(ultiliti$Wat). </p>
+          <div class="im1"><img src=image/pic2.5.png  style="width:420px;height:250px" class="i3" >  </div>
+          <p>In addition to task2, we need select input as name of state (not abbreviation), the way I do is setNames(state.key,state.name) [simiar like as.factor], this got unique list of state abbreviations on left and list of ordered state name on the right. So,  setNames(state.key,state.name)[input$state], this will search for selected state input in state.key if see the match in particular position(3rd index), then output is 3rd index of state.name.</p>
+          <div class="im1"><img src=image/pic2.6.png  style="width:300px;height:250px" class="i3" >  
+            <img src=image/pic2.7.png  style="width:550px;height:150px" class="i3" >  
+          </div> 
+          <p>addition to task3, there some state don’t have full of 9 sources in particular year, as I realized when do  sum for 9 sources within for each of 52 state(within specific year). So, when got subset of a source and year, before map to usmap I just add extra dataframe with rbind to some state don’t exist with sum of that source is 0. </p>
+      </div>
+      <div class= "info3">
+          <li>On task1, Overall US We can found Coal percent   is a little depleted across year, meanwhile  amount Coal still increases from 3.8e+09 to 4.0e+09 from 2000 to 2007.  But the amount of Coal seem decrease dramatically after 2008, which make sense if match to Coal percent. </li>
+          <li>On task1, Nuclear amount overall seem increase over years, got its strong jump 1998 at 1.3e+09 and reach peak at 2010 with 1.6e+09, however, percent Nuclear is just flat across year. Indicate, total amount of very year forward increase as well without look on stack bar. </li>
+          <li> Wind and Wood is not common source to generate MegaWatt</li>
+          <li>On task3, Around 1990-2005, Texas  got highest  Coal  Watt amount, and several  second highest are Indiana, Ohio, Penn. Seem like Texas have other higher source candidate (because Texas percent of Coal colored not really dark on map ), so back to task2, Texas have Gas is highest. Meanwhile  Indiana, Ohio, Penn are nominated by Coal Watt generator.</li>
+          <li>Below 2000s,  Gas is only strong on Texas and California, but got more on Florida 2006, New York  2010, but become more prominence( see on percent map) over time on NorthWest and some states on NorthSouth </li>
+          <li>Almost every year, Illinois and NewYork has highest  nuclear generator amount. But on NorthEast nuclear is prominence,  state  eg. South/North Carolina, New Jersey, Virginia use nuclear as main source generator </li>
+          <li>Hydro is pretty strong on some NorthWest,like Oregon,Washing, Idaho (obvious to think, because near coast). Second rank may be New York, California. But around 2008, California start to not really depend on Hydro. </li>
+      </div>
+      <div class= "info4">
+        <iframe width="700" height="600" src="https://www.youtube.com/embed/NZ4ET79bZiM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+   </div>
+
+   
+  </div>
+  <script src="mywebj.js"></script>
+</html>
