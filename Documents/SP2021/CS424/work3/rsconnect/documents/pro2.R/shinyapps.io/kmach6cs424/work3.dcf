@@ -1,0 +1,13 @@
+name: work3
+title: work3
+username:
+account: kmach6cs424
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3773734
+bundleId: 4331221
+url: https://kmach6cs424.shinyapps.io/work3/
+when: 1615473093.84708
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: pro2.1.R|s1.R|United.R|Untitled2.R|us_state_populations.csv|w1.R|xorange.png|xyellow.png
