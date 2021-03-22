@@ -61,18 +61,29 @@ function go_detail(ev){
      
     }
     
-   
-   
-    //console.log(pop_content.children.length);
-    //console.log(pop_content.children[1].id);
-  
-
-    
 }
 
-var pa = document.querySelector(".food_item").children;
-console.log(pa[0].id);
-console.log(pa[1].id);
+document.querySelector("#meat_item").style.visibility ="visible";
+function bring_list(ev){
+    var id = ev.id;
+    var  l  = ["meat","vegi","soup"];
+   // console.log(ev.id);
+    var kui = id.split('_');
+    var item_list = document.querySelector("#"+kui[1]+"_item"); 
+    item_list.style.visibility  = "visible"; 
+    l.forEach(function(key,index){
+        console.log("[ ",key);
+        if(key != kui[1]){
+            var nol  = document.querySelector("#"+key+"_item"); 
+            console.log("-",nol.id);
+            nol.style.visibility  = "hidden"; 
+        }
+    });
+
+}
+
+
+console.log("start game");
 
 
 
@@ -118,6 +129,10 @@ console.log(pop_content.firstElementChild.id);
 var co  = pop_content.firstElementChild; 
 var co1 = co.nextElementSibling;
 console.log(co1.id);
+
+var pa = document.querySelector(".meat_item").children;
+console.log(pa[0].id);
+console.log(pa[1].id); 
 
 child = pop_content.children.length // give 1, is pic 
 
