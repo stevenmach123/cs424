@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+<title>GOOD MEALS</title>
+	<!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![end if]-->
+</head>
+<style>
+    #container {
+        position: relative;
+    }
+
+    #container > * {
+        position: absolute;
+    }
+
+    .left {
+    left: 0;
+    }
+
+    .right {
+        right: 0;
+    }
+
+    .top {
+        top: 0;
+    }
+
+    .bottom {
+        bottom: 0;
+    }
+
+    .navSelection{
+        display: inline;
+        padding: 10px;
+        margin: 10px;
+        background-color: gray;
+    }
+
+    div {
+        border: 1px solid black;
+
+    }
+</style>
+<body>
+
+    <div id="container">
+        <div class="top left">
+            <div>GOOD MEALS</div>
+            <div>Image</div>
+            <div>Information</div>
+        </div>
+        
+        <div class="top right">
+            <ul display="inline">
+                <li class="navSelection">Article</li>
+                <li class="navSelection">Schedule</li>
+            </ul>
+        </div>
+        
+        <div class="bottom left">
+
+        </div>
+        
+        <div class="bottom right">
+             <p>content</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

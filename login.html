@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+<title>GOOD MEALS</title>
+	<!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![end if]-->
+</head>
+<style>
+    #login {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        /* bring your own prefixes */
+        transform: translate(-50%, -50%);
+        border: 1px solid black;
+        text-align: center;
+   }
+
+   #loginTable td{
+        margin: auto;
+        padding: 5px;
+   }
+
+   #loginBtn {
+       width: 100px;
+       height: 50px;
+   }
+</style>
+<body>
+    <div id="login">
+        <h3>Log in</h3>
+        <table id="loginTable">
+            <tr>
+                <td>Username</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password"></td>
+            </tr>
+        </table>
+        <a href="article.html">
+            <button id="loginBtn">Log in</button>
+        </a>
+        <p>Don't have account? <a href="register.html">Register</a></p>
+    </div>
+    
+</body>
+
+</html>
