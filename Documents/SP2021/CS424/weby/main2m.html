@@ -5,6 +5,7 @@
         display:flex;
         flex-flow: column;
         width:300px; 
+        
         text-align:center;
         border:  1px solid orange;
         justify-self: center;
@@ -14,7 +15,6 @@
     .ab:hover {
         background-color:pink;
         
-        justify-content: center;
     
     }
     .ab{
@@ -22,82 +22,209 @@
         margin-left: auto;
         margin-right:auto;
     }
-    .ty{ 
-        display:inline;
-        border-radius: 1px solid orange;
-        
-    }
-    .ty1{ 
-        display: flex;
-        justify-content: center;
-        
-    }
+   
     .food_item{
         display: flex;
         flex-flow: row;
-        width:45%;
+        width :700px;
         flex-wrap:wrap;
         border:1px solid orange;
         justify-content: space-evenly;
+        
+        
     }
 
     .item_box{
-    
-        width :min-content;
+       
+        display:inline;
         text-align: center;
         flex-flow: column;
         border: 1px solid orange;
         
     }
+   
+    
     .ca p{
         margin-bottom:0px;
     }
-    </style>
 
+    .center_food{
+        margin-left: 25%;
+    
+    }
+
+    .center_food .food_item{
+        visibility: hidden;
+        position:absolute; 
+    }
+
+    nav div {
+        display:inline-block;
+    }
+  
+    .uniform_wh{
+        width:"300px"; 
+        height:"180px"; 
+    }
+  
+    div [content="outer"]{
+        visibility: hidden;
+        position:absolute; 
+        opacity: 0.92;
+        z-index:2;
+        height:500px;
+    }
+    
+
+    @-webkit-keyframes fadeIn {
+        from {opacity: 0;} 
+        to {opacity: 0.92;}
+    }
+    .show{
+        
+        background-color: rgb(225, 198, 219);
+        
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+    }
+    nav .bb:hover{
+        background-color: coral;
+    }
+   
+    </style>
+   
     <body>
-        <div class= "food_item">
+       <div class ="center_food">
+        <nav>
+            <div id="nav_meat" class="bb" onclick= "bring_list(this)">Meat</div>
+            <div id="nav_vegi" class="bb" onclick= "bring_list(this)"  >Vegi</div>
+            <div id="nav_soup" class="bb" onclick= "bring_list(this)">Soup</div>
+        </nav>
+        <div >
+            <div content="outer" id="popup_chick1"> 
+                <img id="im1" src = "image_v1/chick1.jpeg" ></img>
+                <p id="im2" >Chicken fille</p> 
+                <p id="im3">steam the chick </p>
+                <button id = "cancel_chick1" onclick="go_delete(this)">CANCEL</button>
+            </div>
+
+            <div content="outer" id="popup_chick2"> 
+                <img src = "image_v1/chick2.jpeg" ></img>
+                <p >Chicken fille</p> 
+                <p>Boil  the chick </p>
+                <button id = "cancel_chick2" onclick="go_delete(this)" >CANCEL</button>
+            </div>
+
+            <div content="outer" id="popup_beef1"> 
+                <img src = "image_v1/beef1.jpeg"></img>
+                <p >Beef medium</p> 
+                <p>Oil it</p>
+                <button id = "cancel_beef1" onclick="go_delete(this)" >CANCEL</button>
+            </div>
+            <div content="outer" id="popup_beef2"> 
+                <img  src = "image_v1/beef2.jpeg" ></img>
+                <p >Beef red</p> 
+                <p>Pepper it</p>
+                <button id = "cancel_beef2" onclick="go_delete(this)" >CANCEL</button>
+            </div>
+
+            <div content="outer" id="popup_chick3"> 
+                <img src = "image_v1/chick3.jpeg" ></img>
+                <p >Beef tarariki</p> 
+                <p>Soil sauce it </p>
+                <button id = "cancel_chick3" onclick="go_delete(this)" >CANCEL</button>
+            </div>
+           
+
+        </div>
+        
+        <div class= "food_item" id ="meat_item">
+          
+           
             <div class = "ca" id ="chick1">
-                <img id="im1" src = "image_v1/a1.jpeg" style ="height:180px"></img>
+                <img id="im1" src = "image_v1/chick1.jpeg" style ="height:180px"></img>
                 <p >Chicken fille</p> 
                 <div class="ab" id= "add_chick1" onclick="go_add(this)" >Add</div>
-                <div class="ab" id="im2"  >Detail</div> 
+                <div class="ab" id="but_chick1" onclick = "go_detail(this)"   >Detail</div> 
             </div>
 
             <div class = "ca" id = "chick2" >
-                <img src = "image_v1/a2.jpeg" style ="height:180px"></img> 
+                <img src = "image_v1/chick2.jpeg" style ="height:180px"></img> 
                 <p>Chicken mexico</p> 
                 <div class="ab" id= "add_chick2" onclick="go_add(this)" >Add</div>
-                <div class="ab"  >Detail</div> 
+                <div class="ab" id="but_chick2" onclick = "go_detail(this)" >Detail</div> 
             </div>  
             <div class = "ca" id ="beef1">
-                <img src = "image_v1/a3.jpeg"style ="height:180px" ></img> 
+                <img src = "image_v1/beef1.jpeg"style ="height:180px" ></img> 
                 <p>Beef medium</p> 
                 <div class="ab" id= "add_beef1" onclick="go_add(this)">Add</div>
-                <div class="ab">Detail</div> 
+                <div class="ab" id="but_beef1" onclick = "go_detail(this)"   >Detail</div> 
             </div> 
             <div class = "ca" id ="beef2">
-                <img src = "image_v1/a4.jpeg" style ="height:180px"></img> 
+                <img src = "image_v1/beef2.jpeg" style ="height:180px"></img> 
                 <p>Beef red</p> 
                 <div class="ab" id= "add_beef2" onclick="go_add(this)" >Add</div>
-                <div class="ab">Detail</div> 
+                <div class="ab" id="but_beef2" onclick = "go_detail(this)"  >Detail</div> 
             </div> 
             <div class = "ca" id = "chick3">
-                <img src = "image_v1/a5.jpeg" style ="height:180px"></img> 
+                <img src = "image_v1/chick3.jpeg" style ="height:180px"></img> 
                 <p>Beef tarariki</p>  
                 <div class="ab" id= "add_chick3"  onclick="go_add(this)">Add</div>
-                <div class="ab">Detail</div> 
+                <div class="ab" id="but_chick3" onclick = "go_detail(this)">Detail</div> 
             </div> 
         </div>
-        <div id ="select_item">
-            
-        </div>
-        <div class="ty1">
-            <div class ="ty"> fdfdf</div>
-            <div class="ty">fdf</div>
+
+        <div class ="food_item" id="vegi_item"  >
+            <div class = "ca" id ="vegi1">
+                <img src = "image_v1/vegi1.jpeg" style ="height:180px"></img>
+                <p >Broclli</p> 
+                <div class="ab" id= "add_vegi1" onclick="go_add(this)" >Add</div>
+                <div class="ab" id="but_vegi1" onclick = "go_detail(this)"   >Detail</div> 
+            </div>
+            <div class = "ca" id ="vegi2">
+                <img id="im1" src = "image_v1/vegi2.jpeg" style ="height:180px"></img>
+                <p >Radish</p> 
+                <div class="ab" id= "add_vegi2" onclick="go_add(this)" >Add</div>
+                <div class="ab" id="but_vegi2" onclick = "go_detail(this)"   >Detail</div> 
+            </div>
+
+
         </div>
 
+        <div class ="food_item" id="soup_item" >
+            <div class = "ca" id ="soup1">
+                <img  src = "image_v1/soup1.jpeg" style ="height:180px"></img>
+                <p >Chicken fille</p> 
+                <div class="ab" id= "add_soup1" onclick="go_add(this)" >Add</div>
+                <div class="ab" id="but_vegi1" onclick = "go_detail(this)"   >Detail</div> 
+            </div>
+            <div class = "ca" id ="soup2">
+                <img  src = "image_v1/soup2.jpeg" style ="height:180px"></img>
+                <p >Chicken fille</p> 
+                <div class="ab" id= "add_soup2" onclick="go_add(this)" >Add</div>
+                <div class="ab" id="but_soup2" onclick = "go_detail(this)" >Detail</div> 
+            </div>
+
+
+
+        </div>
+       
+
+      
+       
+    </div>
+   
+    <div id="select_item">
+        
+    </div>
+
+
+
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="main2j.js"></script>
+    
+
 
 
 </html>
