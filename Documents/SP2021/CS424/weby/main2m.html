@@ -1,106 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <style>
-    .ca{
-        display:flex;
-        flex-flow: column;
-        width:300px; 
-        
-        text-align:center;
-        border:  1px solid orange;
-        justify-self: center;
-        
-    }
-
-    .ab:hover {
-        background-color:pink;
-        
-    
-    }
-    .ab{
-        width:50%;
-        margin-left: auto;
-        margin-right:auto;
-    }
+    <head>
+        <link rel ="stylesheet"  href="main2style.css"></link>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
    
-    .food_item{
-        display: flex;
-        flex-flow: row;
-        width :700px;
-        flex-wrap:wrap;
-        border:1px solid orange;
-        justify-content: space-evenly;
-        
-        
-    }
 
-    .item_box{
-       
-        display:inline;
-        text-align: center;
-        flex-flow: column;
-        border: 1px solid orange;
-        
-    }
-   
-    
-    .ca p{
-        margin-bottom:0px;
-    }
-
-    .center_food{
-        margin-left: 25%;
-    
-    }
-
-    .center_food .food_item{
-        visibility: hidden;
-        position:absolute; 
-    }
-
-    nav div {
-        display:inline-block;
-    }
-  
-    .uniform_wh{
-        width:"300px"; 
-        height:"180px"; 
-    }
-  
-    div [content="outer"]{
-        visibility: hidden;
-        position:absolute; 
-        opacity: 0.92;
-        z-index:2;
-        height:500px;
-    }
-    
-
-    @-webkit-keyframes fadeIn {
-        from {opacity: 0;} 
-        to {opacity: 0.92;}
-    }
-    .show{
-        
-        background-color: rgb(225, 198, 219);
-        
-        -webkit-animation: fadeIn 1s;
-        animation: fadeIn 1s;
-    }
-    nav .bb:hover{
-        background-color: coral;
-    }
-   
-    </style>
-   
-    <body>
+    <section>
+      <div class = "center_user">
+          my user 
+      </div>
        <div class ="center_food">
+
+        <div class="search-container">
+            <form >
+                <input type="text" style="width:200px;height:20px" placeholder="Search.." name="search">
+                <button type="submit" ><i class="fa fa-search"></i></button>
+            </form>
+            <div class="me"> Article </div>
+            <div class="me">Schedule Food</div>
+        </div>
+        
         <nav>
             <div id="nav_meat" class="bb" onclick= "bring_list(this)">Meat</div>
             <div id="nav_vegi" class="bb" onclick= "bring_list(this)"  >Vegi</div>
             <div id="nav_soup" class="bb" onclick= "bring_list(this)">Soup</div>
         </nav>
-        <div >
+
+        <p id="type_title">MEAT </p>
+
+        <div class= "main_outer" >
             <div content="outer" id="popup_chick1"> 
                 <img id="im1" src = "image_v1/chick1.jpeg" ></img>
                 <p id="im2" >Chicken fille</p> 
@@ -128,46 +57,108 @@
                 <button id = "cancel_beef2" onclick="go_delete(this)" >CANCEL</button>
             </div>
 
-            <div content="outer" id="popup_chick3"> 
-                <img src = "image_v1/chick3.jpeg" ></img>
-                <p >Beef tarariki</p> 
-                <p>Soil sauce it </p>
-                <button id = "cancel_chick3" onclick="go_delete(this)" >CANCEL</button>
+            <div content="outer" id="popup_vegi1"> 
+                <img src = "image_v1/vegi1.jpeg" ></img>
+                <p >Broccoli</p> 
+                <p>Good vitaminC and  prevent diseases high levels of glucoraphanin   </p>
+                <button id = "cancel_vegi1" onclick="go_delete(this)" >CANCEL</button>
             </div>
            
+            <div content="outer" id="popup_vegi2"> 
+                <img src = "image_v1/vegi2.jpeg" ></img>
+                <p >Radish</p> 
+                <p>antioxidants and rich fiber </p>
+                <button id = "cancel_vegi2" onclick="go_delete(this)" >CANCEL</button>
+            </div>
+            
+            
+            
+            <div content="outer" id="popup_vegi3"> 
+                <img src = "image_v1/vegi3.jpeg" ></img>
+                <p >Spinach</p> 
+                <p>Reduce blood pressure and aid weight loss  </p>
+                <button id = "cancel_vegi3" onclick="go_delete(this)" >CANCEL</button>
+            </div>
 
+            <div content="outer" id="popup_vegi4"> 
+                <img src = "image_v1/vegi4.jpeg" ></img>
+                <p >Tomato</p> 
+                <p>Rich vitaminC and vitamin K and prevent cancer   </p>
+                <button id = "cancel_vegi4" onclick="go_delete(this)" >CANCEL</button>
+            </div>
+
+            <div content="outer" id="popup_soup1"> 
+                <img src = "image_v1/soup1.jpeg" ></img>
+                <p >Chader Soup</p> 
+                <p>Cream and egg, boiling 5min  </p>
+                <button id = "cancel_soup1" onclick="go_delete(this)" >CANCEL</button>
+            </div>
+
+            <div content="outer" id="popup_soup2"> 
+                <img src = "image_v1/soup2.jpeg" ></img>
+                <p >Mushroom Cream</p> 
+                <p>Milk, mushroom, green garlic, boiling 5min   </p>
+                <button id = "cancel_soup2" onclick="go_delete(this)" >CANCEL</button>
+            </div>
+            
+            <div content="outer" id="popup_soup3"> 
+                <img src = "image_v1/soup3.jpeg" ></img>
+                <p >Chicken Noodle</p> 
+                <p> Pasta,chicken boil  </p>
+                <button id = "cancel_soup3" onclick="go_delete(this)" >CANCEL</button>
+            </div>
+            <div content="outer" id="popup_soup4"> 
+                <img src = "image_v1/soup4.jpeg" ></img>
+                <p >Tomato Soup</p> 
+                <p> Pasta,chicken boil  </p>
+                <button id = "cancel_soup4" onclick="go_delete(this)" >CANCEL</button>
+            </div>
+
+
+            <div content= "outer" id ="popup_option_list">
+                <div id ="1" onclick ="to_list(this)"><p>BREAKFAST</p></div>
+                <div id="2" onclick ="to_list(this)"><p>LUNCH</p></div>
+                <div id="3" onclick ="to_list(this)"><p>DINNER</p></div>
+                <button id = "cancel_option_list" onclick="go_delete(this)" >CANCEL</button>
+            </div>
+            <div content= "outer" id ="popup_collection">
+                <div id = "collection"> </div>
+                
+                <button id = "cancel_collection" onclick="go_delete(this)" >CANCEL</button>
+            </div>
         </div>
-        
+
+       
         <div class= "food_item" id ="meat_item">
           
            
-            <div class = "ca" id ="chick1">
-                <img id="im1" src = "image_v1/chick1.jpeg" style ="height:180px"></img>
+            <div class = "one_item" id ="chick1">
+                <img id="im1" src = "image_v1/chick1.jpeg" ></img>
                 <p >Chicken fille</p> 
                 <div class="ab" id= "add_chick1" onclick="go_add(this)" >Add</div>
                 <div class="ab" id="but_chick1" onclick = "go_detail(this)"   >Detail</div> 
             </div>
 
-            <div class = "ca" id = "chick2" >
-                <img src = "image_v1/chick2.jpeg" style ="height:180px"></img> 
+            <div class = "one_item" id = "chick2" >
+                <img src = "image_v1/chick2.jpeg" ></img> 
                 <p>Chicken mexico</p> 
                 <div class="ab" id= "add_chick2" onclick="go_add(this)" >Add</div>
                 <div class="ab" id="but_chick2" onclick = "go_detail(this)" >Detail</div> 
             </div>  
-            <div class = "ca" id ="beef1">
-                <img src = "image_v1/beef1.jpeg"style ="height:180px" ></img> 
+            <div class = "one_item" id ="beef1">
+                <img src = "image_v1/beef1.jpeg" ></img> 
                 <p>Beef medium</p> 
                 <div class="ab" id= "add_beef1" onclick="go_add(this)">Add</div>
                 <div class="ab" id="but_beef1" onclick = "go_detail(this)"   >Detail</div> 
             </div> 
-            <div class = "ca" id ="beef2">
-                <img src = "image_v1/beef2.jpeg" style ="height:180px"></img> 
+            <div class = "one_item" id ="beef2">
+                <img src = "image_v1/beef2.jpeg" ></img> 
                 <p>Beef red</p> 
                 <div class="ab" id= "add_beef2" onclick="go_add(this)" >Add</div>
                 <div class="ab" id="but_beef2" onclick = "go_detail(this)"  >Detail</div> 
             </div> 
-            <div class = "ca" id = "chick3">
-                <img src = "image_v1/chick3.jpeg" style ="height:180px"></img> 
+            <div class = "one_item" id = "chick3">
+                <img src = "image_v1/chick3.jpeg" ></img> 
                 <p>Beef tarariki</p>  
                 <div class="ab" id= "add_chick3"  onclick="go_add(this)">Add</div>
                 <div class="ab" id="but_chick3" onclick = "go_detail(this)">Detail</div> 
@@ -175,52 +166,135 @@
         </div>
 
         <div class ="food_item" id="vegi_item"  >
-            <div class = "ca" id ="vegi1">
-                <img src = "image_v1/vegi1.jpeg" style ="height:180px"></img>
-                <p >Broclli</p> 
+            <div class = "one_item" id ="vegi1">
+                <img src = "image_v1/vegi1.jpeg" ></img>
+                <p >Brococoli</p> 
                 <div class="ab" id= "add_vegi1" onclick="go_add(this)" >Add</div>
                 <div class="ab" id="but_vegi1" onclick = "go_detail(this)"   >Detail</div> 
             </div>
-            <div class = "ca" id ="vegi2">
-                <img id="im1" src = "image_v1/vegi2.jpeg" style ="height:180px"></img>
+            <div class = "one_item" id ="vegi2">
+                <img id="im1" src = "image_v1/vegi2.jpeg" ></img>
                 <p >Radish</p> 
                 <div class="ab" id= "add_vegi2" onclick="go_add(this)" >Add</div>
                 <div class="ab" id="but_vegi2" onclick = "go_detail(this)"   >Detail</div> 
             </div>
 
+            <div class = "one_item" id ="vegi3">
+                <img id="im1" src = "image_v1/vegi3.jpeg" ></img>
+                <p >Spinach</p> 
+                <div class="ab" id= "add_vegi3" onclick="go_add(this)" >Add</div>
+                <div class="ab" id="but_vegi3" onclick = "go_detail(this)"   >Detail</div> 
+            </div>
+
+            <div class = "one_item" id ="vegi4">
+                <img id="im1" src = "image_v1/vegi4.jpeg" ></img>
+                <p >Tomato</p> 
+                <div class="ab" id= "add_vegi4" onclick="go_add(this)" >Add</div>
+                <div class="ab" id="but_vegi4" onclick = "go_detail(this)"   >Detail</div> 
+            </div>
+
+
 
         </div>
 
         <div class ="food_item" id="soup_item" >
-            <div class = "ca" id ="soup1">
-                <img  src = "image_v1/soup1.jpeg" style ="height:180px"></img>
-                <p >Chicken fille</p> 
+            <div class = "one_item" id ="soup1">
+                <img  src = "image_v1/soup1.jpeg" style =></img>
+                <p >Chader Soup</p> 
                 <div class="ab" id= "add_soup1" onclick="go_add(this)" >Add</div>
                 <div class="ab" id="but_vegi1" onclick = "go_detail(this)"   >Detail</div> 
             </div>
-            <div class = "ca" id ="soup2">
-                <img  src = "image_v1/soup2.jpeg" style ="height:180px"></img>
-                <p >Chicken fille</p> 
+            <div class = "one_item" id ="soup2">
+                <img  src = "image_v1/soup2.jpeg" style =></img>
+                <p >Mushroom Cream</p> 
                 <div class="ab" id= "add_soup2" onclick="go_add(this)" >Add</div>
                 <div class="ab" id="but_soup2" onclick = "go_detail(this)" >Detail</div> 
+            </div>
+
+            <div class = "one_item" id ="soup3">
+                <img  src = "image_v1/soup3.jpeg" style =></img>
+                <p >Chicken Noodle</p> 
+                <div class="ab" id= "add_soup3" onclick="go_add(this)" >Add</div>
+                <div class="ab" id="but_soup3" onclick = "go_detail(this)" >Detail</div> 
+            </div>
+
+            <div class = "one_item" id ="soup4">
+                <img  src = "image_v1/soup4.jpeg" style =></img>
+                <p >Tomato Soup</p> 
+                <div class="ab" id= "add_soup4" onclick="go_add(this)" >Add</div>
+                <div class="ab" id="but_soup4" onclick = "go_detail(this)" >Detail</div> 
             </div>
 
 
 
         </div>
-       
+  
+    </div>  
 
-      
-       
+     
+    
+
+    <div class ="center_list">
+        <div class="plan" id="li1" onclick ="see_list(this)" > 
+          
+           <p style="font-size:15px; text-align: center;">BREAKFAST</p> 
+           <div> 
+           <p style ="display:inline-block;margin-left:20%;">PROTEIN <ins>0</ins> kg</p>
+           <p style ="display:inline;margin-left: 20%;">SODIUM <ins>0</ins> kg</p>
+           </div>
+           <div> 
+           <p style ="display:inline-block;margin-left:20%;">SUGAR <ins>0</ins> kg</p>
+           <p style ="display:inline-block;margin-left:22%;">VITAMIN <ins>0</ins> kg</p>
+          </div>
+           <p  style="margin-left:3%" >ITEMs: <ins id="num_item" >0</ins></p> 
+        </div>
+        <div class ="plan" id ="li2" onclick ="see_list(this)" > 
+           <p style="font-size:15px; text-align: center;" >LUNCH</p> 
+           <div> 
+            <p style ="display:inline-block;margin-left:20%;">PROTEIN <ins>0</ins> kg</p>
+            <p style ="display:inline-block;margin-left: 20%;">SODIUM <ins>0</ins> kg</p>
+            </div>
+            <div> 
+            <p style ="display:inline-block;margin-left:20%;">SUGAR <ins>0</ins> kg</p>
+            <p style ="display:inline-block;margin-left:22%;">VITAMIN <ins>0</ins> kg</p>
+            </div>
+            <p  style="margin-left:3%" >ITEMs: <ins id="num_item">0</ins></p> 
+        </div>
+        <div class="plan" id ="li3"  onclick ="see_list(this)" >
+            <p style="font-size:15px;text-align: center;"  >DINNER </p> 
+            <div> 
+                <p style ="display:inline-block;margin-left:20%;">PROTEIN <ins>0</ins> kg</p>
+                <p style ="display:inline-block;margin-left: 20%;">SODIUM <ins>0</ins> kg</p>
+                </div>
+                <div> 
+                <p style ="display:inline-block;margin-left:20%;">SUGAR <ins>0</ins> kg</p>
+                <p style ="display:inline-block;margin-left:22%;">VITAMIN <ins>0</ins> kg</p>
+            </div>
+            <p  style="margin-left:3%" >ITEMs: <ins id="num_item">0</ins></p> 
+        </div>
+    </div>       
+  
+
+
+    
+
+
+
+
+
+
+
+</section>
+  <!--  <section> 
+    <div class="ty1">
+        <div class ="ty"> fdfdf</div>
+        <div class="ty">fdf</div>
     </div>
-   
     <div id="select_item">
         
     </div>
-
-
-
-    </body>
+</section>   -->
+  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="main2j.js"></script>
     
