@@ -94,27 +94,31 @@ function getRegisterPage(){
 
 function getArticlePage(){
     return `
-        <div id="container">
-            <div class="top left">
-                <div>GOOD MEALS</div>
-                <div>Image</div>
-                <div>Information</div>
-            </div>
-            
-            <div class="top right">
-                <ul display="inline">
-                    <li class="navSelection">Article</li>
-                    <li class="navSelection">Schedule</li>
-                </ul>
-            </div>
-            
-            <div class="bottom left">
+        <div id="info">
+        <label>GOOD MEALS</label><br>
+        <label>Image</label><br>
+        <label>Information</label>
+        </div>
 
-            </div>
-            
-            <div class="bottom right">
-                <p>content</p>
-            </div>
+        <div id="navigationBar">
+            <button class="navSelection">Article</button>
+            <button class="navSelection">Schedule</button>
+        </div>
+
+        <div id="title">
+            title
+        </div>
+
+        <div id="foodOptions">
+            foodOptions
+        </div>
+
+        <div id="calendar">
+                <p>calendar</p>
+        </div>
+
+        <div id="lists">
+            lists
         </div>
     `;
 }
