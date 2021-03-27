@@ -2,6 +2,10 @@ html {
     overflow: scroll;
 }
 
+div {
+    border: 1px solid black;
+}
+
 /* index.html style */
 #frame {
     
