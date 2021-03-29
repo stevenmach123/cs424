@@ -246,6 +246,7 @@ function onDayClick(){
     date.year = parseInt(document.querySelector("#year").innerHTML);
     alert(date.getDate());
 
+    $(".daysList li button").css({"background-color":"transparent"});
     this.style.backgroundColor = "aqua";
     
 }
