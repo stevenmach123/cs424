@@ -223,7 +223,37 @@ function bring_list(ev){
 console.log("start game");
 
 
+//
+// ***************************Start Nguyen Hoa's code *******************
+//
+window.onload = function(){
+    addCalendarEventListener();
+}
 
+// add event listeners to calendar
+function addCalendarEventListener(){
+    var daysList = document.getElementsByClassName("daysList button");
+    
+    $(".daysList li button").on("click", onDayClick);
+}
+
+function onDayClick(){
+    var date = new Date();
+
+    // get the date
+    date.day = parseInt(this.innerHTML);
+    date.month = date.monthNameToNumber(document.querySelector("#month").innerHTML);
+    date.year = parseInt(document.querySelector("#year").innerHTML);
+    alert(date.getDate());
+
+    this.style.backgroundColor = "aqua";
+    
+}
+
+
+//
+// ***************************End Nguyen Hoa's code *******************
+//
 
 
 

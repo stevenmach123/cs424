@@ -3,6 +3,9 @@
     <head>
         <link rel ="stylesheet"  href="main2style.css"></link>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- to fix favicon error -->
+        <link rel="shortcut icon" href="#">
     </head>
    
 
@@ -248,70 +251,68 @@
     
 
     <div class ="center_list">
-        <!-- *************CALENDAR******************* -->
-        <div id="calendar">
+        <!-- *************START CALENDAR******************* -->
+        <div id="calendarBlock">
 
-            <div class="month">      
+            <div class="monthBlock">      
                 <ul>
-                <li class="prev">&#10094;</li>
-                <li class="next">&#10095;</li>
-                <li>
-                    March<br>
-                    <span style="font-size:18px">2021</span>
-                </li>
+                    <li class="prev"><button>&#10094;</button></li>
+                    <li class="next"><button>&#10095;</button></li>
+                    <li id="month">March</li>
+                    <li id="year">2021</li>
                 </ul>
             </div>
           
-          <ul class="weekdays">
-            <li>Mo</li>
-            <li>Tu</li>
-            <li>We</li>
-            <li>Th</li>
-            <li>Fr</li>
-            <li>Sa</li>
-            <li>Su</li>
-          </ul>
+            <ul class="weekdaysList">
+                <li>Mo</li>
+                <li>Tu</li>
+                <li>We</li>
+                <li>Th</li>
+                <li>Fr</li>
+                <li>Sa</li>
+                <li>Su</li>
+            </ul>
           
-          <ul class="days">  
-            <li><button>1</button></li>
-            <li><button>2</button></li>
-            <li><button>3</button></li>
-            <li><button>4</button></li>
-            <li><button>5</button></li>
-            <li><button>6</button></li>
-            <li><button>7</button></li><br>
-            <li><button>8</button></li>
-            <li><button>9</button></li>
-            <li><button>10</button></li>
-            <li><button>11</button></li>
-            <li><button>12</button></li>
-            <li><button>13</button></li>
-            <li><button>14</button></li><br>
-            <li><button>15</button></li>
-            <li><button>16</button></li>
-            <li><button>17</button></li>
-            <li><button>18</button></li>
-            <li><button>19</button></li>
-            <li><button>20</button></li>
-            <li><button>21</button></li><br>
-            <li><button>22</button></li>
-            <li><button>23</button></li>
-            <li><button>24</button></li>
-            <li><button>25</button></li>
-            <li><button>26</button></li>
-            <li><button>27</button></li>
-            <li><button>28</button></li><br>
-            <li><button>29</button></li>
-            <li><button>30</button></li>
-            <li><button>31</button></li>
-          </ul>
+            <ul class="daysList">  
+                <li><button>1</button></li>
+                <li><button>2</button></li>
+                <li><button>3</button></li>
+                <li><button>4</button></li>
+                <li><button>5</button></li>
+                <li><button>6</button></li>
+                <li><button>7</button></li><br>
+                <li><button>8</button></li>
+                <li><button>9</button></li>
+                <li><button>10</button></li>
+                <li><button>11</button></li>
+                <li><button>12</button></li>
+                <li><button>13</button></li>
+                <li><button>14</button></li><br>
+                <li><button>15</button></li>
+                <li><button>16</button></li>
+                <li><button>17</button></li>
+                <li><button>18</button></li>
+                <li><button>19</button></li>
+                <li><button>20</button></li>
+                <li><button>21</button></li><br>
+                <li><button>22</button></li>
+                <li><button>23</button></li>
+                <li><button>24</button></li>
+                <li><button>25</button></li>
+                <li><button>26</button></li>
+                <li><button>27</button></li>
+                <li><button>28</button></li><br>
+                <li><button>29</button></li>
+                <li><button>30</button></li>
+                <li><button>31</button></li>
+            </ul>
         </div>
 
         <div id="mealPlanTitle">
             <p>MEAl PLANS</p>
         </div>
 
-        <!-- *************CALENDAR******************* -->
+        <!-- *************END CALENDAR******************* -->
         <div class="plan" id="li1" onclick ="see_list(this)" > 
           
            <p style="font-size:15px; text-align: center;">BREAKFAST</p> 
@@ -374,6 +375,7 @@
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="main2j.js"></script>
+    <script src="classes.js"></script>
     
 
 
