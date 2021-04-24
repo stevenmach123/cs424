@@ -28,7 +28,7 @@ readRenviron("~/.Renviron")
 evl1<-read.table(file = "energy11(v3).csv", sep = ",",skipNul="TRUE",header = TRUE)
 evl1$census_blocks <-substring(evl1$census_blocks,2)
 
-
+print("give time to download file")
 #####~~~~~~ THOSE LINE FOR DOWNLOAD BLOCK AND TRACT,I HAVE SEPARATE FILE CALLED prepare.r, YOU can have those as GLOBAL assigned before everything, and delete those aa,aa31 here to start faster 
 aa <-get_decennial(geography = "block", state ="IL", variables = "P001001", county="Cook",geometry = TRUE)
 aa31 <-get_acs(geography= "tract",state= "IL", variables = "B01003_001",county ="Cook", geometry=TRUE)
@@ -70,7 +70,7 @@ evl1 <- subset(evl1, !(is.na(GEOID)) & building_type !="")
 evl1$com  <- ifelse(str_detect(evl1$com,","),"Ohare",evl1$com)
 
 
-print("remember to put aa")
+
 btypes<-unique(evls1$building_type)
 btypes <- c("All Buildings", btypes) 
 
