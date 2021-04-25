@@ -1,3 +1,6 @@
+#KHANG MACH  PROJECT3 CS424
+
+
 library(shiny)
 library(shinydashboard)
 library(shinyBS)
@@ -21,6 +24,7 @@ library(data.table)
 set.seed(5)
 
 
+
 census_api_key("6b39cc5661b7cefd31443142a5e20fcd31fc72bb",install=TRUE,overwrite=TRUE)
 readRenviron("~/.Renviron")
 
@@ -36,6 +40,7 @@ aa31  <- aa31  %>% select(-c("moe","estimate","variable","NAME"))
 
 ######~~~~~~
 
+# edit data for task1-2
 evl1$kwh_1 <- ifelse(is.na(evl1$kwh_1),0,evl1$kwh_1) 
 evl1$kwh_2 <- ifelse(is.na(evl1$kwh_2),0,evl1$kwh_2) 
 evl1$kwh_3 <- ifelse(is.na(evl1$kwh_3),0,evl1$kwh_3) 
@@ -65,6 +70,7 @@ evl1$the_11 <- ifelse(is.na(evl1$the_11),0,evl1$the_11)
 evl1$the_12<- ifelse(is.na(evl1$the_12),0,evl1$the_12) 
 evl1$total_the <-  ifelse(is.na(evl1$total_the),0,evl1$total_the) 
 
+# get out some weird GEOID,and some community has long name
 names(evl1)[names(evl1)=="census_blocks"]  <- "GEOID"
 evl1 <- subset(evl1, !(is.na(GEOID)) & building_type !="")
 evl1$com  <- ifelse(str_detect(evl1$com,","),"Ohare",evl1$com)
@@ -76,6 +82,7 @@ btypes <- c("All Buildings", btypes)
 
 community <- unique(evl1$com)
 
+# process data for task 3
 
 evl3 <- subset(evl1, !is.na(total_units) & !is.na(total_population) & !is.na(house_size) )
 #evls3  <- subset(evls3, !is.na(oc_unit_percent) & oc_unit_percent != 0 & !is.na(re_oc_percent) )
@@ -88,7 +95,7 @@ evl3$re_oc_percent <- ifelse(is.na(evl3$re_oc_percent),0,evl3$re_oc_percent )
 
 
 
-
+# detect if it is mix buildings in same GEOID
 type_building <-function(x){
   cur <-c()
   
@@ -110,11 +117,14 @@ type_building <-function(x){
   
 }
 
+
+
 my_random1  <- function(x){
   index <- round(runif(1,min=0,max=length(x)),0)
   
   return(x[index[1]])
 }
+# multiple GEOID or not 
 
 is_multiple <- function(x){
   if(length(x)>1){
@@ -126,7 +136,7 @@ is_multiple <- function(x){
 }
 
 
-
+# have all names of community of that track
 my_random  <-function(x){
 
     uni <-c()
@@ -168,7 +178,7 @@ my_random  <-function(x){
   
   
 
-
+# turn df with one row to list
 
 by_list  <- function(x){
   num <-c()
@@ -399,7 +409,7 @@ ui  <- fluidPage(
 )
 
 
-
+#task 2 stimulation for 2 maps
 
 task2_sti <- function(property,month,type,select_com,gr){
 
@@ -413,11 +423,11 @@ task2_sti <- function(property,month,type,select_com,gr){
 
   
 
-  
-  if(property =="Electricity"){
+  # summarize info of a group that have same GEOID, also prefer to accumulate numeric columns
+  if(property =="Electricity"){ # accumualte by kwh_1...kwh_12 or total_kwh
     if(month == "1"){
       #assign(coi,"kwh_1",envir =parent.frame())
-      ho1 <- "kwh_1"
+      ho1 <- "kwh_1"   # remember what column select from 
       evl21 <-evl21 %>%  group_by(GEOID) %>% summarise(community= my_random(com),Multiple = is_multiple(GEOID),building_type = type_building(building_type) ,kwh_1 = sum(kwh_1)) 
     }
     if(month == "2"){
@@ -483,7 +493,7 @@ task2_sti <- function(property,month,type,select_com,gr){
     
     
   }
-  if(property == "Gas"){
+  if(property == "Gas"){  #group GEOID and accumualte by the_1...the_12 or total_the
     
     if(month == "1"){
       evl21 <-  evl21 %>%  group_by(GEOID) %>% summarise(community= my_random(com),Multiple = is_multiple(GEOID),building_type = type_building(building_type) ,the_1 = sum(the_1)) 
@@ -578,8 +588,8 @@ task2_sti <- function(property,month,type,select_com,gr){
   }
   
  
-  evl21 <-evl21 %>% filter(str_detect(community,select_com)==TRUE)
-  ay2 <- inner_join(aa,evl21,"GEOID")  %>% select(-c("value","variable","NAME"))
+  evl21 <-evl21 %>% filter(str_detect(community,select_com)==TRUE)  # detect unique GEOID that have that community name
+  ay2 <- inner_join(aa,evl21,"GEOID")  %>% select(-c("value","variable","NAME")) #merge with shapefile
   #View(ay2)
   list(ay2,ho1)
   
@@ -592,7 +602,7 @@ task2_sti <- function(property,month,type,select_com,gr){
   
 }
 
-
+#task3 stimulation for 2 map 
 task3_sti  <- function(property,month,type,gr){
   
   if( type != "All Buildings"){
@@ -602,8 +612,8 @@ task3_sti  <- function(property,month,type,gr){
     evl31<- evl3
   }
   ho1 <- "-"
-
-  if(property == "Electricity"){
+  # here, group by tract GEOID, and again accumulate kwh,the as numeric for each  unique GEOID 
+  if(property == "Electricity"){# accumulate for kwh_1..kwh_12 and total_kwh
     if(month =="1"){
       evl31  <-evl31 %>% group_by(GEOID)  %>% summarise(Multiple = is_multiple(GEOID), building_type  = type_building(building_type), kwh_1 = sum(kwh_1))
       ho1 <-"kwh_1"
@@ -660,7 +670,7 @@ task3_sti  <- function(property,month,type,gr){
     
     
   }
-  else if( property =="Gas"){
+  else if( property =="Gas"){ # accumulate for the1..the12 and total_the
     if(month =="1"){
       evl31  <-evl31 %>% group_by(GEOID)  %>% summarise(Multiple = is_multiple(GEOID), building_type  = type_building(building_type), the_1 = sum(the_1))
       ho1 <-"the_1"
@@ -733,14 +743,14 @@ task3_sti  <- function(property,month,type,gr){
   
   }
    
-  evl311 <- inner_join(aa31,evl31)
+  evl311 <- inner_join(aa31,evl31) # merge evl31 with tract lv shapefile
   View(evl311)
-  list(evl311,ho1)
+  list(evl311,ho1)  # return as a list of 2 variable, 
   
 }
 
 
-
+# find legend title for task3.3
 find_title3 <-function(t){
   if(t == "Oldest Building"){
     return("Oldest average age")
@@ -772,7 +782,7 @@ find_title3 <-function(t){
   }
 }
 
-
+# tract 10% evaluation to take 10% of data based on input$ten
 ten_tract  <-function(ten,type){ 
   
   if( type != "All Buildings"){
@@ -790,12 +800,12 @@ ten_tract  <-function(ten,type){
     evl32  <- evl32 %>% group_by(GEOID) %>% summarise(avg_age = mean(building_age)) 
     len  <- as.integer(nrow(evl32) * 0.1)
     
-    for(i in seq(1,len,by =1)){
+    for(i in seq(1,len,by =1)){ #loop to take one out and find max of next update evl32
       nmax <-max(evl32$avg_age)
-      ar3 <- evl32[evl32$avg_age == nmax, ]  
+      ar3 <- evl32[evl32$avg_age == nmax, ]  # max  avg_age
       ar3$avg_age  <- round(ar3$avg_age,2)
-      fl32 <- rbind(fl32,ar3)
-      evl32  <-subset(evl32,evl32$avg_age != nmax)
+      fl32 <- rbind(fl32,ar3)     # bind max row with fl32
+      evl32  <-subset(evl32,evl32$avg_age != nmax)   # next update evl32
       
     }
     ho1  <- "avg_age"
@@ -806,7 +816,7 @@ ten_tract  <-function(ten,type){
     len  <- as.integer(nrow(evl32) * 0.1)
     for(i in seq(1,len,by =1)){
       nmin <-min(evl32$avg_age)
-      ar3 <- evl32[evl32$avg_age == nmin, ]  
+      ar3 <- evl32[evl32$avg_age == nmin, ]      # min  avg_age
       ar3$avg_age  <- round(ar3$avg_age,2)
       fl32 <- rbind(fl32,ar3)
       evl32  <-subset(evl32,evl32$avg_age != nmin)
@@ -822,7 +832,7 @@ ten_tract  <-function(ten,type){
     for(i in seq(1,len,by =1)){
       nmax <-max(evl32$avg_height)
       ar3 <- evl32[evl32$avg_height == nmax, ]  
-      ar3$avg_height  <- round(ar3$avg_height,2)
+      ar3$avg_height  <- round(ar3$avg_height,2)   #   max avg_height
       fl32 <- rbind(fl32,ar3)
       evl32  <-subset(evl32,evl32$avg_height != nmax)
     }
@@ -835,8 +845,8 @@ ten_tract  <-function(ten,type){
     
     for(i in seq(1,len,by =1)){
       nmax <-max(evl32$total_kwh)
-      ar3 <- evl32[evl32$total_kwh == nmax, ]  
-      ar3$total_kwh  <- round(ar3$total_kwh,2)
+      ar3 <- evl32[evl32$total_kwh == nmax, ]     # max total_kwh
+      ar3$total_kwh  <- round(ar3$total_kwh,2)   
       fl32 <- rbind(fl32,ar3)
       evl32  <-subset(evl32,evl32$total_kwh != nmax)
     }
@@ -850,8 +860,8 @@ ten_tract  <-function(ten,type){
     
     for(i in seq(1,len,by =1)){
       nmax <-max(evl32$total_the)
-      ar3 <- evl32[evl32$total_the == nmax, ]  
-      ar3$total_the  <- round(ar3$total_the,2)
+      ar3 <- evl32[evl32$total_the == nmax, ]      #max total_the
+      ar3$total_the  <- round(ar3$total_the,2)     
       fl32 <- rbind(fl32,ar3)
       evl32  <-subset(evl32,evl32$total_the != nmax)
     }
@@ -907,7 +917,7 @@ ten_tract  <-function(ten,type){
   
   
   View(fl32)
-  evl37  <- inner_join(aa31,fl32,"GEOID")
+  evl37  <- inner_join(aa31,fl32,"GEOID")   #join with shapefile
   print("ss")
   list(evl37,ho1)
   
@@ -918,7 +928,7 @@ ten_tract  <-function(ten,type){
 
 
 
-
+# find good title legend for task 1-2
 find_title <- function(x){ 
  
   id <- ""
@@ -979,7 +989,7 @@ find_title <- function(x){
 
 
 
-
+# color palete, those are I create, no use pallete
 
 coy1 <- c("#34eb6e","#ebd334","#f0d573","#ed9261","#eb8934","#eb6834","#ae8aeb","#d034eb")
 coy2   <- c( "#9ecae1","#afccfa","#6eabf5","#3182bd","#baaffa","#b85aae","#8877ed","#756bb1")
@@ -987,7 +997,7 @@ coy3  <- c("#5ab4ac","#15bfbf","#aff4fa","#c7afa5","#c99e89","#bf8265","#c2b85d"
 cor1 <- c("#34eb6e","#ebd334","#eb8934","#32a6a8","#a83240","#d034eb")
 cor2 <- c("#9ecae1","#3182bd","#baaffa","#756bb1","#b85aae","#afccfa")
 cor3 <-c("#5ab4ac","#aff4fa","#ada76c","#bf8265","#c7afa5","#a8874d" ) 
-find_coy <-function(x){  
+find_coy <-function(x){  # use for 3 option color of numeric 
   if(x==1){
     return(coy1)
   }
@@ -998,7 +1008,7 @@ find_coy <-function(x){
     return(coy3)
   }
 } 
-find_cor  <- function(x){
+find_cor  <- function(x){  # use for 3 option color of building_type
   if(x==1){
     return(cor1)
   }
@@ -1009,10 +1019,10 @@ find_cor  <- function(x){
     return(cor3)
   }
 }
-
+# #eb34d3
 
 coy21 <- c("#34eb6e","#ebd334","#f0d573","#ed9261","#eb8934","#eb6834","#ae8aeb","#d034eb")
-coy22   <- c("#9ecae1","#d61df2","#d034eb","#f21d92","#6816f5","#756bb1")
+coy22   <- c("#9ecae1","#d61df2","#eb34d3","#c21588","#f21d92","#6816f5","#756bb1","#c21515")
 coy23  <- c("#5ab4ac","#c2b85d","#c99e89","#ada76c","#a8874d")
 find_coy2 <-function(x){  
   if(x==1){
@@ -1030,8 +1040,8 @@ find_coy2 <-function(x){
 hoi1 <- ""
 hoi2  <-""
 server <- function(input,output,session){
-  
-  output$txt_tract31 <-renderText({
+  #####TASK 3   - I put it first, so do code more efficient when scroll
+  output$txt_tract31 <-renderText({ # give text for 10% tract, when group data by building_type
     ftitle <- find_title3(input$ten31)
     paste("10%","in","Chicago",input$type31,"that","have",ftitle)
     
@@ -1042,7 +1052,8 @@ server <- function(input,output,session){
     paste("10%","in","Chicago",input$type32,"that","have",ftitle)
     
   })
-  output$my_tract31  <- renderLeaflet({
+  
+  output$my_tract31  <- renderLeaflet({  # map1 of task   (10% tract)
     input$reset31
     ayo1 <- ten_tract(input$ten31,input$type31)
     print("q1")
@@ -1055,7 +1066,7 @@ server <- function(input,output,session){
   })
   
   
-  output$my_tract32  <- renderLeaflet({
+  output$my_tract32  <- renderLeaflet({ # map2 of task 3.3
     input$reset32
     ayo2 <- ten_tract(input$ten32,input$type32)
     ftitle <- find_title3(input$ten32)
@@ -1069,7 +1080,7 @@ server <- function(input,output,session){
   
   
   
-  output$my_map31  <- renderLeaflet({
+  output$my_map31  <- renderLeaflet({  #map1 of task3.1
     input$reset31
     ay31 <- task3_sti(input$property31,input$month31,input$type31,1)
     fcoy  <- find_coy2(input$color31) 
@@ -1086,7 +1097,7 @@ server <- function(input,output,session){
     }
   })
   
-  output$my_map32  <- renderLeaflet({
+  output$my_map32  <- renderLeaflet({    #map2 of task3.1
     input$reset32
     ay32 <- task3_sti(input$property32,input$month32,input$type32,1)
     fcoy  <- find_coy2(input$color32) 
@@ -1107,7 +1118,7 @@ server <- function(input,output,session){
   
   
  
-  output$sum_the_plot31  <- renderPlot({
+  output$sum_the_plot31  <- renderPlot({ #plot sum gas  of screen1 task 3.2
     
       if(input$type31 !="All Buildings"){
         evl31 <- subset(evl3,building_type ==input$type31 )
@@ -1133,7 +1144,7 @@ server <- function(input,output,session){
   
   
   
-  output$sum_kwh_plot31  <- renderPlot({
+  output$sum_kwh_plot31  <- renderPlot({  #plot sum electricity  of screen1 task 3.2
     
     if(input$type31 !="All Buildings"){
       evl31 <- subset(evl3,building_type ==input$type31 )
@@ -1157,7 +1168,7 @@ server <- function(input,output,session){
     
   })
   
-  output$sum_the_plot32  <- renderPlot({
+  output$sum_the_plot32  <- renderPlot({    #plot sum gas  of screen2 task 3.2
     
     if(input$type32 !="All Buildings"){
       evl31 <- subset(evl3,building_type ==input$type32 )
@@ -1180,7 +1191,7 @@ server <- function(input,output,session){
     
     
   })
-  output$sum_kwh_plot32  <- renderPlot({
+  output$sum_kwh_plot32  <- renderPlot({ #plot sum electricity   of screen2 task 3.2
     
     if(input$type32 !="All Buildings"){
       evl31 <- subset(evl3,building_type ==input$type32 )
@@ -1206,7 +1217,7 @@ server <- function(input,output,session){
   
   
   
-  output$table31 <- renderTable({
+  output$table31 <- renderTable({  # table of screen1 task 3.2
     if(input$type31 !="All Buildings"){
       evl31 <- subset(evl3,building_type ==input$type31 )
     }
@@ -1231,7 +1242,7 @@ server <- function(input,output,session){
     
   },include.rownames=TRUE)
   
-  output$table32 <- renderTable({
+  output$table32 <- renderTable({    # table of screen2 task 3.2
     if(input$type32 !="All Buildings"){
       evl31 <- subset(evl3,building_type ==input$type32 )
     }
@@ -1275,7 +1286,7 @@ server <- function(input,output,session){
 
     
   
-
+   #map 1 if else to group by GEOID and sum selected numeric column or identify building_type
   output$my_map <- renderLeaflet({
   
     evl11 <-set_type()
@@ -1421,7 +1432,7 @@ server <- function(input,output,session){
    fcor <- find_cor(1)
    ftitle <- find_title(ho)
    input$reset
-  if(ho=="building_type"){
+  if(ho=="building_type"){ # ho assigned above served as what selected column 
     mapview(ay1,zcol=ho,col.regions =fcor,layer.name = ftitle  )@map
   }else {
    mapview(ay1,zcol=ho,col.regions =fcoy,layer.name = ftitle)@map
@@ -1434,7 +1445,7 @@ server <- function(input,output,session){
     
   })
   
-  output$sum_kwh_plot <- renderPlot({
+  output$sum_kwh_plot <- renderPlot({  #sum kwh plot 
     evl11 <-set_type()
 
     evl12 <- group_by(evl11) %>% summarise_at(vars("kwh_1","kwh_2","kwh_3","kwh_4","kwh_5","kwh_6","kwh_7","kwh_8","kwh_9","kwh_10","kwh_11","kwh_12"),sum) 
@@ -1452,7 +1463,7 @@ server <- function(input,output,session){
   })
   
   
-  output$sum_the_plot <- renderPlot({
+  output$sum_the_plot <- renderPlot({    #sum gas/thermal plot 
     
 
 
@@ -1496,18 +1507,18 @@ server <- function(input,output,session){
     evl15
     
   },include.rownames=TRUE)
+  ############# TASK 2
   
-  
-  output$my_map21  <-renderLeaflet({
+  output$my_map21  <-renderLeaflet({ # map of screen1 
     ay3 <- task2_sti(input$property1,input$month1,input$type1,input$com1,1)
     ay21 <-ay3[[1]]
      
     View(ay21)
-    fcoy1 <-find_coy(input$color1)
-    fcor1  <- find_cor(input$color1) 
+    fcoy1 <-find_coy2(input$color1)   # give color of numeric column 
+    fcor1  <- find_cor(input$color1)   # give color of type/categeory column
     
     op1 <- ay3[[2]]
-    ftitle1 <-  find_title(op1)
+    ftitle1 <-  find_title(op1) # find right legend title
     
     input$reset1
     if(op1=="building_type"){
@@ -1524,12 +1535,12 @@ server <- function(input,output,session){
   
   
   
-  output$my_map22  <-renderLeaflet({
+  output$my_map22  <-renderLeaflet({ # map of screen2
     ay2 <- task2_sti(input$property2,input$month2,input$type2,input$com2,2)
     ay22 <-ay2[[1]]
     View(ay22)
     
-    fcoy2 <-find_coy(input$color2)
+    fcoy2 <-find_coy2(input$color2)
     fcor2  <- find_cor(input$color2) 
     
     input$reset2
@@ -1552,7 +1563,7 @@ server <- function(input,output,session){
   
   
   
-  output$sum_kwh_plot21  <- renderPlot({
+  output$sum_kwh_plot21  <- renderPlot({  # sum electricity  plot of screen1 
    
     if(input$type1 != "All Buildings"){
       evl21 <- subset(evl1, com == input$com1 & building_type == input$type1  )
@@ -1582,7 +1593,7 @@ server <- function(input,output,session){
     
   }) 
     
-  output$sum_the_plot21 <- renderPlot({
+  output$sum_the_plot21 <- renderPlot({   # sum thermal  plot of screen1
     
     if(input$type1 != "All Buildings"){
       evl21 <- subset(evl1,com == input$com1 &  building_type == input$type1 )
@@ -1616,7 +1627,7 @@ server <- function(input,output,session){
   
   
   
-  output$sum_kwh_plot22  <- renderPlot({
+  output$sum_kwh_plot22  <- renderPlot({  # sum electricity  plot of screen2
     
     if(input$type2 != "All Buildings"){
       evl21 <- subset(evl1, com == input$com2 & building_type == input$type2  )
@@ -1652,7 +1663,7 @@ server <- function(input,output,session){
   
   
   
-  output$sum_the_plot22 <- renderPlot({
+  output$sum_the_plot22 <- renderPlot({  # sum thermal  plot of screen2
     
     if(input$type2 != "All Buildings"){
       evl21 <- subset(evl1, com == input$com2 & building_type == input$type2 )
@@ -1685,8 +1696,8 @@ server <- function(input,output,session){
     
   })
   
-  output$table21  <- renderTable({
-    
+  output$table21  <- renderTable({  # table  of screen1 
+      
     if(input$type1 != "All Buildings"){
       evl21 <- subset(evl1, com == input$com1 & building_type == input$type1 )
     }
@@ -1711,7 +1722,8 @@ server <- function(input,output,session){
     
   },include.rownames=TRUE)
   
-  output$table22 <- renderTable({
+  
+  output$table22 <- renderTable({  # table  of screen2
     
     if(input$type2 != "All Buildings"){
       evl21 <- subset(evl1, com == input$com2 & building_type == input$type2 )
